@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+      enabled: true
+      path: /h2-ui
+  datasource:
+    url: jdbc:h2:file:./data/projectzero/banco.db;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+    driverClassName: org.h2.Driver
+    username: "admin"
+    password: "admin"
+    initialization-mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: "746908858402-hjrip70l239jel341vkki10fbl7l99sp.apps.googleusercontent.com"
+            client-secret: "rqTctHPMZ9VhqE9zitETHOA1"
+
+logging:
+  file: demo.log
+  level:
+    com.code.demo: DEBUG
+
+springdoc:
+  api-docs:
+    path: /swagger.json
+  swagger-ui:
+    path: /swagger
