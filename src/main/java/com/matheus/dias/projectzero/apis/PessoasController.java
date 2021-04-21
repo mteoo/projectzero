@@ -78,12 +78,11 @@ public class PessoasController {
 
     @DeleteMapping(path = "{id}")
     public ResponseEntity<Pessoas> delete(@PathVariable("id") Long id) {
-        try {
+        if (repository.exists(pessoas.id.eq(id))) {
             repository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
